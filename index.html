@@ -483,7 +483,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
   <div class="container">
     <div class="hero-grid">
@@ -567,7 +566,6 @@
   </div>
 </header>
 
-<!-- FORM SECTION -->
 <section class="form-section" id="registro">
   <div class="container">
     <div class="form-grid">
@@ -603,7 +601,7 @@
           <div class="field">
             <label for="whatsapp">Número de WhatsApp</label>
             <div class="field-row">
-              <input type="text" id="codigo" name="codigo" placeholder="+57" autocomplete="tel-country-code" value="+57" />
+              <input type="text" id="codigo" name="codigo" required placeholder="+57" autocomplete="tel-country-code" value="+57" />
               <input type="tel" id="whatsapp" name="whatsapp" required placeholder="3001234567" autocomplete="tel-national" />
             </div>
           </div>
@@ -613,25 +611,25 @@
               <label for="pais">País</label>
               <select id="pais" name="pais" required>
                 <option value="">Selecciona…</option>
-                <option>Colombia</option>
-                <option>México</option>
-                <option>Argentina</option>
-                <option>Chile</option>
-                <option>Perú</option>
-                <option>Ecuador</option>
-                <option>Venezuela</option>
-                <option>Uruguay</option>
-                <option>Paraguay</option>
-                <option>Bolivia</option>
-                <option>España</option>
-                <option>Costa Rica</option>
-                <option>Panamá</option>
-                <option>Guatemala</option>
-                <option>Honduras</option>
-                <option>El Salvador</option>
-                <option>República Dominicana</option>
-                <option>Estados Unidos</option>
-                <option>Otro</option>
+                <option value="Colombia">Colombia</option>
+                <option value="México">México</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Chile">Chile</option>
+                <option value="Perú">Perú</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="España">España</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Panamá">Panamá</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Honduras">Honduras</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="República Dominicana">República Dominicana</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Otro">Otro</option>
               </select>
             </div>
             <div class="field">
@@ -653,7 +651,6 @@
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="faq-section">
   <div class="container">
     <div style="text-align:center;">
@@ -685,7 +682,6 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container narrow">
     <h2>No necesitas <em>saberlo todo</em> para empezar</h2>
@@ -702,16 +698,14 @@
   </div>
 </footer>
 
-<!-- Sticky countdown bar -->
 <div class="live-countdown" id="liveCountdown">
   <div class="lc-text">⏰ Falta <strong id="lc-text">poco</strong> para el webinar</div>
   <a href="#registro" class="lc-cta">Reservar cupo</a>
 </div>
 
-<>
+<script>
   // ====== CONFIG ======
-  // 👉 Reemplaza esta URL con la URL de tu Apps  (Web App) cuando lo despliegues.
-  const APPS__URL = "https://script.google.com/macros/s/AKfycbw2Y6WUJsSJ8rQ6fxYmYWeMeW4zMnYOGFXVz0ZEzCFGRX2u-k4hlTbg7Ayo4_yMyRnw/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2Y6WUJsSJ8rQ6fxYmYWeMeW4zMnYOGFXVz0ZEzCFGRX2u-k4hlTbg7Ayo4_yMyRnw/exec";
 
   // Webinar: Viernes 22 de mayo de 2026, 7:00 PM Colombia (UTC-5) = 00:00 UTC del 23 de mayo
   const webinarDate = new Date(Date.UTC(2026, 4, 23, 0, 0, 0));
@@ -776,49 +770,59 @@
     status.style.display = 'none';
     status.className = 'form-status';
 
-    // Build payload
-    const data = {
-      nombre: document.getElementById('nombre').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      codigo: document.getElementById('codigo').value.trim(),
-      whatsapp: document.getElementById('whatsapp').value.trim(),
-      pais: document.getElementById('pais').value,
-      ciudad: document.getElementById('ciudad').value.trim()
-    };
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const codigo = document.getElementById('codigo').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const pais = document.getElementById('pais').value;
+    const ciudad = document.getElementById('ciudad').value.trim();
 
-    // Quick validation
-    if (!data.nombre || !data.email || !data.whatsapp || !data.pais || !data.ciudad){
-      status.textContent = 'Por favor completa todos los campos.';
+    // Validación estricta
+    if (!nombre || !email || !codigo || !whatsapp || !pais || !ciudad) {
+      status.textContent = 'Por favor completa todos los campos del formulario.';
       status.className = 'form-status error';
+      status.style.display = 'block';
       return;
     }
+
+    // Build payload (Nota: El script espera 'codigo' en minúscula para evitar problemas)
+    const data = {
+      nombre: nombre,
+      email: email,
+      codigo: codigo,
+      whatsapp: whatsapp,
+      pais: pais,
+      ciudad: ciudad
+    };
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando…';
 
     try {
-      // Apps Script Web App accepts text/plain to avoid CORS preflight
       const response = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
+        // Cambiamos 'no-cors' para poder leer la respuesta. Apps script con doPost y jsonResponse maneja bien esto si está desplegado correctamente.
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(data)
       });
+      
+      const result = await response.json();
 
-      // With mode: 'no-cors' we can't read the response, so we assume success
-      // if no error was thrown
-      status.innerHTML = '🎉 <strong>¡Listo!</strong> Te acabamos de enviar la confirmación a tu correo, con la invitación lista para tu calendario. Revisa también tu carpeta de spam.';
-      status.className = 'form-status success';
-      form.reset();
-      document.getElementById('codigo').value = '+57';
-
-      // Track conversion (optional)
-      if (typeof gtag === 'function'){ gtag('event','conversion',{event_category:'webinar', event_label:'registro'}); }
+      if (result.ok) {
+        status.innerHTML = '🎉 <strong>¡Listo!</strong> Te acabamos de enviar la confirmación a tu correo. Revisa también tu carpeta de spam.';
+        status.className = 'form-status success';
+        status.style.display = 'block';
+        form.reset();
+        document.getElementById('codigo').value = '+57';
+      } else {
+        throw new Error(result.error || 'Error desconocido');
+      }
 
     } catch (err) {
       console.error(err);
-      status.textContent = 'Hubo un problema enviando tus datos. Intenta de nuevo en unos minutos o escríbeme directo a hola@valclabs.com';
+      status.textContent = 'Hubo un problema enviando tus datos. Revisa tu conexión o escríbeme directo.';
       status.className = 'form-status error';
+      status.style.display = 'block';
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Reservar mi cupo gratis →';
