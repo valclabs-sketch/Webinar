@@ -39,6 +39,7 @@
   }
   .container{max-width:1180px; margin:0 auto; padding:0 24px;}
   .narrow{max-width:780px; margin:0 auto;}
+
   /* ---------- NAV ---------- */
   nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
@@ -60,6 +61,11 @@
     box-shadow:0 4px 14px rgba(91,63,203,0.3);
   }
   .nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(91,63,203,0.4);}
+
+  /* ---------- PAGE MAIN WRAPPER (hero + form) ---------- */
+  /* Desktop: normal block flow — hero first, then form */
+  .page-main{ display:block; }
+
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
@@ -73,7 +79,6 @@
   .hero-grid{
     display:grid; grid-template-columns: 1.1fr 1fr; gap:60px; align-items:center;
   }
-  @media (max-width: 900px){ .hero-grid{grid-template-columns:1fr; gap:40px;} .hero{padding:110px 0 60px;} }
   .badge{
     display:inline-flex; align-items:center; gap:8px;
     background:var(--purple-100); color:var(--purple-700);
@@ -139,15 +144,14 @@
   .cta-primary:hover{transform:translateY(-2px); box-shadow:0 14px 34px rgba(91,63,203,0.45);}
   .cta-primary .arrow{transition:transform .25s ease;}
   .cta-primary:hover .arrow{transform:translateX(4px);}
-  .cta-note{font-size:13px; color:var(--ink-soft);}
-  /* Urgency chip next to CTA */
   .urgency-chip{
     display:inline-flex; align-items:center; gap:6px;
     background:#FFF3CD; color:#856404;
     border:1px solid #FFE08A;
     padding:6px 12px; border-radius:100px; font-size:12px; font-weight:700;
   }
-  /* ---------- HERO ART (right side) ---------- */
+
+  /* ---------- HERO ART ---------- */
   .hero-art{
     position:relative; min-height:480px;
   }
@@ -208,11 +212,7 @@
   .cd-cell{background:var(--purple-100); padding:8px 4px; border-radius:8px;}
   .cd-num{font-family:'Fraunces',serif; font-weight:700; font-size:20px; color:var(--purple-700); line-height:1;}
   .cd-lbl{font-size:9px; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.05em; margin-top:4px;}
-  @media (max-width:900px){
-    .hero-art{min-height:auto; display:flex; flex-direction:column; gap:20px; align-items:center;}
-    .floating-card{position:static; animation:none;}
-    .card-countdown{display:none;}
-  }
+
   /* ---------- SECTION BASE ---------- */
   section{padding:90px 0;}
   @media (max-width:700px){section{padding:60px 0;}}
@@ -228,6 +228,7 @@
   }
   h2 em{color:var(--purple-700); font-style:italic;}
   .section-lead{font-size:17px; color:var(--ink-soft); max-width:680px; margin-bottom:48px;}
+
   /* ---------- FORM SECTION ---------- */
   .form-section{
     background:linear-gradient(135deg, var(--purple-800), var(--purple-700));
@@ -248,12 +249,6 @@
     display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
     position:relative; z-index:1;
   }
-  @media (max-width:900px){
-    .form-grid{grid-template-columns:1fr; gap:36px;}
-    /* Show form card first on mobile */
-    .form-left{order:2;}
-    .form-card{order:1;}
-  }
   .form-section h2{color:var(--white);}
   .form-section h2 em{color:var(--gold);}
   .form-section .section-lead{color:rgba(255,255,255,0.85);}
@@ -264,6 +259,10 @@
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
     color:var(--gold); font-weight:700; margin-top:2px;
   }
+
+  /* Mobile-only compact intro shown above the form on mobile */
+  .mobile-form-intro{ display:none; }
+
   .form-card{
     background:var(--white);
     border-radius:24px;
@@ -273,7 +272,6 @@
     position:relative;
     z-index:2;
   }
-  @media (max-width:520px){.form-card{padding:28px 20px;}}
   .form-card .form-tag{
     position:absolute; top:-14px; left:30px;
     background:var(--gold); color:#5C4408;
@@ -283,7 +281,6 @@
   }
   .form-card h3{font-family:'Fraunces',serif; font-size:24px; margin-bottom:4px;}
   .form-card .subtitle{font-size:14px; color:var(--ink-soft); margin-bottom:22px;}
-  /* Date highlight inside form */
   .form-date-banner{
     background:var(--purple-50);
     border:1px solid rgba(91,63,203,0.2);
@@ -308,9 +305,7 @@
     box-shadow:0 0 0 4px rgba(124,92,219,0.12);
   }
   .field-row{display:grid; grid-template-columns:110px 1fr; gap:10px;}
-  @media (max-width:480px){.field-row{grid-template-columns:90px 1fr;}}
   .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  @media (max-width:480px){.field-grid{grid-template-columns:1fr; gap:14px;}}
   .submit-btn{
     width:100%; padding:17px;
     background:linear-gradient(135deg, var(--purple-700), var(--purple-600));
@@ -327,31 +322,7 @@
   .form-status{margin-top:14px; padding:14px; border-radius:10px; font-size:14px; display:none;}
   .form-status.success{background:#D8F5E3; color:#136D40; display:block;}
   .form-status.error{background:#FFE0E5; color:#A4133C; display:block;}
-  /* ---------- ABOUT VAL ---------- */
-  .about-section{background:var(--white);}
-  .about-grid{display:grid; grid-template-columns:1fr 1.2fr; gap:60px; align-items:center;}
-  @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
-  .val-portrait{
-    aspect-ratio:1/1.1; border-radius:24px;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(255,138,76,0.4), transparent 50%),
-      radial-gradient(circle at 70% 70%, rgba(255,92,138,0.4), transparent 50%),
-      linear-gradient(135deg, var(--purple-600), var(--purple-800));
-    position:relative; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .val-emoji{font-size:120px; filter:drop-shadow(0 10px 30px rgba(0,0,0,0.2));}
-  .val-portrait::before{
-    content:"ValClabs 🚀"; position:absolute; bottom:24px; left:24px;
-    color:var(--white); font-family:'Fraunces',serif; font-weight:700; font-size:22px;
-    text-shadow:0 2px 8px rgba(0,0,0,0.2);
-  }
-  .quote-card{
-    background:var(--purple-50); padding:24px; border-radius:16px;
-    border-left:4px solid var(--purple-700);
-    margin-top:24px;
-    font-family:'Fraunces',serif; font-style:italic; font-size:17px; color:var(--ink);
-  }
+
   /* ---------- FAQ ---------- */
   .faq-section{background:var(--purple-50);}
   .faq-list{display:flex; flex-direction:column; gap:12px; max-width:780px; margin:0 auto;}
@@ -376,6 +347,7 @@
     color:var(--ink-soft); font-size:15px;
   }
   .faq-item.open .faq-a{max-height:300px; margin-top:14px;}
+
   /* ---------- FINAL CTA ---------- */
   .final-cta{
     background:linear-gradient(135deg, var(--ink), var(--purple-800));
@@ -397,12 +369,14 @@
     font-size:15px; font-weight:600; color:rgba(255,255,255,0.9);
   }
   .final-cta .ev-item .ev-icon{font-size:18px;}
+
   /* ---------- FOOTER ---------- */
   footer{
     background:var(--ink); color:rgba(255,255,255,0.6); padding:40px 0;
     text-align:center; font-size:13px;
   }
   footer .brand{justify-content:center; color:var(--white); margin-bottom:8px;}
+
   /* ---------- LIVE COUNTDOWN BAR ---------- */
   .live-countdown{
     position:fixed; bottom:0; left:0; right:0; z-index:90;
@@ -419,10 +393,72 @@
     font-weight:700; font-size:13px; text-decoration:none;
     white-space:nowrap;
   }
-  @media (max-width:600px){.lc-text{font-size:12px;} .lc-cta{padding:7px 14px; font-size:12px;}}
+
+  /* ============================================================
+     MOBILE STYLES — ≤ 900px
+     Form section appears FIRST, hero content below
+  ============================================================ */
+  @media (max-width:900px){
+
+    /* Flip the visual order: form first, hero second */
+    .page-main{
+      display:flex;
+      flex-direction:column;
+    }
+    .form-section{
+      order:1;
+      padding-top:88px;  /* clearance for fixed nav */
+      padding-bottom:48px;
+    }
+    .hero{
+      order:2;
+      padding:48px 0 60px; /* no need for nav clearance here anymore */
+    }
+
+    /* Hero: single column */
+    .hero-grid{grid-template-columns:1fr; gap:32px;}
+
+    /* Hide floating cards on mobile (hero art) */
+    .hero-art{display:none;}
+
+    /* Form grid: single column, form card first */
+    .form-grid{grid-template-columns:1fr; gap:32px;}
+    .form-left{order:2;}
+    .form-card{order:1;}
+
+    /* Show the mobile-only compact intro above the form */
+    .mobile-form-intro{
+      display:block;
+      text-align:center;
+      margin-bottom:28px;
+      position:relative;
+      z-index:1;
+    }
+    .mobile-form-intro .badge{
+      background:rgba(255,255,255,0.18);
+      border-color:rgba(255,255,255,0.3);
+      color:var(--white);
+      margin-bottom:14px;
+    }
+    .mobile-form-intro h2{
+      color:var(--white);
+      font-size:clamp(26px,7vw,36px);
+      margin-bottom:0;
+    }
+    .mobile-form-intro h2 em{ color:var(--gold); }
+  }
+
+  @media (max-width:600px){
+    .lc-text{font-size:12px;}
+    .lc-cta{padding:7px 14px; font-size:12px;}
+    .form-card{padding:28px 20px;}
+    .field-row{grid-template-columns:90px 1fr;}
+    .field-grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
+
 <nav id="nav">
   <div class="container nav-inner">
     <div class="brand">
@@ -433,186 +469,194 @@
   </div>
 </nav>
 
-<!-- ===================== HERO ===================== -->
-<header class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
+<!-- ===== PAGE MAIN: hero + form wrapped so we can swap order on mobile ===== -->
+<div class="page-main">
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="badge">
+            <span class="dot"></span>
+            Webinar gratuito · cupos limitados
+          </div>
+          <h1>El <span class="accent">M.A.P.A.</span> para empezar en análisis de datos desde cero</h1>
+          <p class="lead">
+            Una hora para dejar de sentirte sin rumbo con tantos cursos, herramientas y "deberías saber".
+            Vas a salir con una ruta clara, un mini análisis hecho por ti y un siguiente paso real.
+          </p>
+          <div class="hero-meta">
+            <div class="meta-pill">
+              <div class="icon">📅</div>
+              <div>
+                <div class="label">Fecha</div>
+                <div class="value">Martes 2 de junio</div>
+              </div>
+            </div>
+            <div class="meta-pill">
+              <div class="icon">🕗</div>
+              <div>
+                <div class="label">Hora</div>
+                <div class="value">8:00 PM Colombia</div>
+              </div>
+            </div>
+            <div class="meta-pill">
+              <div class="icon">⏱️</div>
+              <div>
+                <div class="label">Duración</div>
+                <div class="value">60 min + Q&amp;A</div>
+              </div>
+            </div>
+            <div class="meta-pill">
+              <div class="icon">💻</div>
+              <div>
+                <div class="label">Formato</div>
+                <div class="value">100% online · gratis</div>
+              </div>
+            </div>
+          </div>
+          <div class="cta-row">
+            <a href="#registro" class="cta-primary">
+              Reservar mi cupo gratis
+              <span class="arrow">→</span>
+            </a>
+            <span class="urgency-chip">⚡ Cupos limitados</span>
+          </div>
+          <p style="margin-top:12px; font-size:13px; color:var(--ink-soft);">Inscripción en 1 minuto · sin tarjeta · sin compromisos</p>
+        </div>
+        <div class="hero-art">
+          <div class="floating-card card-mapa">
+            <div class="mapa-eyebrow">Te voy a presentar</div>
+            <h4>El método M.A.P.A.</h4>
+            <div class="mapa-letters-big">
+              <span class="ml ml-1">M</span>
+              <span class="ml-dot">·</span>
+              <span class="ml ml-2">A</span>
+              <span class="ml-dot">·</span>
+              <span class="ml ml-3">P</span>
+              <span class="ml-dot">·</span>
+              <span class="ml ml-4">A</span>
+            </div>
+            <p class="mapa-tease">Lo que pasa adentro de cada letra te lo cuento el martes 🤫</p>
+          </div>
+          <div class="floating-card card-countdown">
+            <div class="label">Falta para el webinar</div>
+            <div class="countdown-grid" id="countdown-hero">
+              <div class="cd-cell"><div class="cd-num" id="d-d">—</div><div class="cd-lbl">días</div></div>
+              <div class="cd-cell"><div class="cd-num" id="d-h">—</div><div class="cd-lbl">hrs</div></div>
+              <div class="cd-cell"><div class="cd-num" id="d-m">—</div><div class="cd-lbl">min</div></div>
+              <div class="cd-cell"><div class="cd-num" id="d-s">—</div><div class="cd-lbl">seg</div></div>
+            </div>
+          </div>
+          <div class="floating-card card-gift">
+            <span class="gift-emoji">🎁</span>
+            <h4>Regalo sorpresa al final</h4>
+            <p>Quédate hasta el cierre y recibe un descuento especial en mi primer curso de datos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== FORM / REGISTRO ===================== -->
+  <section class="form-section" id="registro">
+    <div class="container">
+
+      <!-- Mobile-only compact title (hidden on desktop) -->
+      <div class="mobile-form-intro">
         <div class="badge">
           <span class="dot"></span>
           Webinar gratuito · cupos limitados
         </div>
-        <h1>El <span class="accent">M.A.P.A.</span> para empezar en análisis de datos desde cero</h1>
-        <p class="lead">
-          Una hora para dejar de sentirte sin rumbo con tantos cursos, herramientas y "deberías saber".
-          Vas a salir con una ruta clara, un mini análisis hecho por ti y un siguiente paso real.
-        </p>
-        <div class="hero-meta">
-          <div class="meta-pill">
-            <div class="icon">📅</div>
-            <div>
-              <div class="label">Fecha</div>
-              <div class="value">Martes 2 de junio</div>
-            </div>
-          </div>
-          <div class="meta-pill">
-            <div class="icon">🕗</div>
-            <div>
-              <div class="label">Hora</div>
-              <div class="value">8:00 PM Colombia</div>
-            </div>
-          </div>
-          <div class="meta-pill">
-            <div class="icon">⏱️</div>
-            <div>
-              <div class="label">Duración</div>
-              <div class="value">60 min + Q&amp;A</div>
-            </div>
-          </div>
-          <div class="meta-pill">
-            <div class="icon">💻</div>
-            <div>
-              <div class="label">Formato</div>
-              <div class="value">100% online · gratis</div>
-            </div>
-          </div>
-        </div>
-        <div class="cta-row">
-          <a href="#registro" class="cta-primary">
-            Reservar mi cupo gratis
-            <span class="arrow">→</span>
-          </a>
-          <span class="urgency-chip">⚡ Cupos limitados</span>
-        </div>
-        <p style="margin-top:12px; font-size:13px; color:var(--ink-soft);">Inscripción en 1 minuto · sin tarjeta · sin compromisos</p>
+        <h2>El <em>M.A.P.A.</em> para empezar en análisis de datos</h2>
       </div>
-      <div class="hero-art">
-        <div class="floating-card card-mapa">
-          <div class="mapa-eyebrow">Te voy a presentar</div>
-          <h4>El método M.A.P.A.</h4>
-          <div class="mapa-letters-big">
-            <span class="ml ml-1">M</span>
-            <span class="ml-dot">·</span>
-            <span class="ml ml-2">A</span>
-            <span class="ml-dot">·</span>
-            <span class="ml ml-3">P</span>
-            <span class="ml-dot">·</span>
-            <span class="ml ml-4">A</span>
-          </div>
-          <p class="mapa-tease">Lo que pasa adentro de cada letra te lo cuento el martes 🤫</p>
-        </div>
-        <div class="floating-card card-countdown">
-          <div class="label">Falta para el webinar</div>
-          <div class="countdown-grid" id="countdown-hero">
-            <div class="cd-cell"><div class="cd-num" id="d-d">—</div><div class="cd-lbl">días</div></div>
-            <div class="cd-cell"><div class="cd-num" id="d-h">—</div><div class="cd-lbl">hrs</div></div>
-            <div class="cd-cell"><div class="cd-num" id="d-m">—</div><div class="cd-lbl">min</div></div>
-            <div class="cd-cell"><div class="cd-num" id="d-s">—</div><div class="cd-lbl">seg</div></div>
+
+      <div class="form-grid">
+        <!-- LEFT: copy & perks -->
+        <div class="form-left">
+          <span class="eyebrow" style="color:var(--gold);">Inscripción gratuita</span>
+          <h2>Reserva tu cupo en <em>1 minuto</em></h2>
+          <p class="section-lead">
+            Te llegará la confirmación por correo con la invitación lista para Google Calendar y iOS,
+            y el link para unirte al grupo de WhatsApp donde estaré compartiendo todo lo previo al webinar.
+          </p>
+          <div class="form-perks">
+            <div class="perk"><span class="check">✓</span><div>Confirmación inmediata por correo electrónico</div></div>
+            <div class="perk"><span class="check">✓</span><div>Invitación automática a tu calendario (Google · iOS · Outlook)</div></div>
+            <div class="perk"><span class="check">✓</span><div>Acceso al grupo privado de WhatsApp pre-webinar</div></div>
+            <div class="perk"><span class="check">✓</span><div><strong>🎁 Regalo sorpresa</strong> si te quedas hasta el final</div></div>
           </div>
         </div>
-        <div class="floating-card card-gift">
-          <span class="gift-emoji">🎁</span>
-          <h4>Regalo sorpresa al final</h4>
-          <p>Quédate hasta el cierre y recibe un descuento especial en mi primer curso de datos.</p>
+
+        <!-- RIGHT: form card -->
+        <div class="form-card">
+          <span class="form-tag">100% gratis</span>
+          <h3>Aparta tu lugar ahora</h3>
+          <p class="subtitle">Solo necesito unos pocos datos para enviarte todo.</p>
+          <div class="form-date-banner">
+            <span class="icon">📅</span>
+            <span>Martes 2 de junio · 8:00 PM (hora Colombia)</span>
+          </div>
+          <form id="registroForm" novalidate>
+            <div class="field">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="¿Cómo te llamas?" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" required placeholder="tu@correo.com" autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="whatsapp">Número de WhatsApp *</label>
+              <div class="field-row">
+                <input type="text" id="codigo" name="codigo" required placeholder="+57" autocomplete="tel-country-code" value="+57" />
+                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="3001234567" autocomplete="tel-national" />
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label for="pais">País *</label>
+                <select id="pais" name="pais" required>
+                  <option value="">Selecciona…</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="México">México</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Chile">Chile</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Ecuador">Ecuador</option>
+                  <option value="Venezuela">Venezuela</option>
+                  <option value="Uruguay">Uruguay</option>
+                  <option value="Paraguay">Paraguay</option>
+                  <option value="Bolivia">Bolivia</option>
+                  <option value="España">España</option>
+                  <option value="Costa Rica">Costa Rica</option>
+                  <option value="Panamá">Panamá</option>
+                  <option value="Guatemala">Guatemala</option>
+                  <option value="Honduras">Honduras</option>
+                  <option value="El Salvador">El Salvador</option>
+                  <option value="República Dominicana">República Dominicana</option>
+                  <option value="Estados Unidos">Estados Unidos</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ciudad">Ciudad *</label>
+                <input type="text" id="ciudad" name="ciudad" required placeholder="Ej: Medellín" autocomplete="address-level2" />
+              </div>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+              🎯 ¡Reservar mi cupo gratis!
+            </button>
+            <p class="form-footnote">Al inscribirte aceptas recibir el correo de confirmación con la invitación al calendario y el link de WhatsApp. Tus datos están seguros y no los compartimos con nadie.</p>
+            <div class="form-status" id="formStatus"></div>
+          </form>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </section>
 
-<!-- ===================== FORM / REGISTRO ===================== -->
-<section class="form-section" id="registro">
-  <div class="container">
-    <div class="form-grid">
-
-      <!-- LEFT: copy & perks -->
-      <div class="form-left">
-        <span class="eyebrow" style="color:var(--gold);">Inscripción gratuita</span>
-        <h2>Reserva tu cupo en <em>1 minuto</em></h2>
-        <p class="section-lead">
-          Te llegará la confirmación por correo con la invitación lista para Google Calendar y iOS,
-          y el link para unirte al grupo de WhatsApp donde estaré compartiendo todo lo previo al webinar.
-        </p>
-        <div class="form-perks">
-          <div class="perk"><span class="check">✓</span><div>Confirmación inmediata por correo electrónico</div></div>
-          <div class="perk"><span class="check">✓</span><div>Invitación automática a tu calendario (Google · iOS · Outlook)</div></div>
-          <div class="perk"><span class="check">✓</span><div>Acceso al grupo privado de WhatsApp pre-webinar</div></div>
-          <div class="perk"><span class="check">✓</span><div><strong>🎁 Regalo sorpresa</strong> si te quedas hasta el final</div></div>
-        </div>
-        <!-- Mobile extra CTA (hidden on desktop) -->
-        <p style="font-size:14px; color:rgba(255,255,255,0.7); display:none;" class="mobile-form-note">👆 Completa el formulario de arriba para guardar tu lugar.</p>
-      </div>
-
-      <!-- RIGHT: form card -->
-      <div class="form-card">
-        <span class="form-tag">100% gratis</span>
-        <h3>Aparta tu lugar ahora</h3>
-        <p class="subtitle">Solo necesito unos pocos datos para enviarte todo.</p>
-
-        <!-- Event date reminder inside form -->
-        <div class="form-date-banner">
-          <span class="icon">📅</span>
-          <span>Martes 2 de junio · 8:00 PM (hora Colombia)</span>
-        </div>
-
-        <form id="registroForm" novalidate>
-          <div class="field">
-            <label for="nombre">Nombre completo *</label>
-            <input type="text" id="nombre" name="nombre" required placeholder="¿Cómo te llamas?" autocomplete="name" />
-          </div>
-          <div class="field">
-            <label for="email">Correo electrónico *</label>
-            <input type="email" id="email" name="email" required placeholder="tu@correo.com" autocomplete="email" />
-          </div>
-          <div class="field">
-            <label for="whatsapp">Número de WhatsApp *</label>
-            <div class="field-row">
-              <input type="text" id="codigo" name="codigo" required placeholder="+57" autocomplete="tel-country-code" value="+57" />
-              <input type="tel" id="whatsapp" name="whatsapp" required placeholder="3001234567" autocomplete="tel-national" />
-            </div>
-          </div>
-          <div class="field-grid">
-            <div class="field">
-              <label for="pais">País *</label>
-              <select id="pais" name="pais" required>
-                <option value="">Selecciona…</option>
-                <option value="Colombia">Colombia</option>
-                <option value="México">México</option>
-                <option value="Argentina">Argentina</option>
-                <option value="Chile">Chile</option>
-                <option value="Perú">Perú</option>
-                <option value="Ecuador">Ecuador</option>
-                <option value="Venezuela">Venezuela</option>
-                <option value="Uruguay">Uruguay</option>
-                <option value="Paraguay">Paraguay</option>
-                <option value="Bolivia">Bolivia</option>
-                <option value="España">España</option>
-                <option value="Costa Rica">Costa Rica</option>
-                <option value="Panamá">Panamá</option>
-                <option value="Guatemala">Guatemala</option>
-                <option value="Honduras">Honduras</option>
-                <option value="El Salvador">El Salvador</option>
-                <option value="República Dominicana">República Dominicana</option>
-                <option value="Estados Unidos">Estados Unidos</option>
-                <option value="Otro">Otro</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="ciudad">Ciudad *</label>
-              <input type="text" id="ciudad" name="ciudad" required placeholder="Ej: Medellín" autocomplete="address-level2" />
-            </div>
-          </div>
-          <button type="submit" class="submit-btn" id="submitBtn">
-            🎯 ¡Reservar mi cupo gratis!
-          </button>
-          <p class="form-footnote">Al inscribirte aceptas recibir el correo de confirmación con la invitación al calendario y el link de WhatsApp. Tus datos están seguros y no los compartimos con nadie.</p>
-          <div class="form-status" id="formStatus"></div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</section>
+</div><!-- end .page-main -->
 
 <!-- ===================== FAQ ===================== -->
 <section class="faq-section">
@@ -683,8 +727,7 @@
 <script>
   // ====== CONFIG ======
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwlurs-BILkbdrXbMQwNicxZQUiQtIiUJJ9ZpCVvsp5PUp7cDRENmikMQN41FZ1izH9/exec";
-
-  // Webinar: Martes 2 de junio de 2026, 8:00 PM Colombia (UTC-5) = 01:00 UTC del 3 de junio
+  // Martes 2 de junio 2026, 8:00 PM Colombia (UTC-5) = 01:00 UTC del 3 de junio
   const webinarDate = new Date(Date.UTC(2026, 5, 3, 1, 0, 0));
 
   // ====== Countdown ======
@@ -699,10 +742,10 @@
       document.getElementById('lc-text').textContent = '¡ya empezamos!';
       return;
     }
-    const days = Math.floor(diff / (1000*60*60*24));
+    const days  = Math.floor(diff / (1000*60*60*24));
     const hours = Math.floor((diff/(1000*60*60))%24);
-    const mins = Math.floor((diff/(1000*60))%60);
-    const secs = Math.floor((diff/1000)%60);
+    const mins  = Math.floor((diff/(1000*60))%60);
+    const secs  = Math.floor((diff/1000)%60);
     document.getElementById('d-d').textContent = days;
     document.getElementById('d-h').textContent = String(hours).padStart(2,'0');
     document.getElementById('d-m').textContent = String(mins).padStart(2,'0');
@@ -719,7 +762,7 @@
   const nav = document.getElementById('nav');
   const liveCountdown = document.getElementById('liveCountdown');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 100){
+    if (window.scrollY > 80){
       nav.classList.add('scrolled');
       liveCountdown.classList.add('visible');
     } else {
@@ -734,21 +777,21 @@
   });
 
   // ====== Form submission ======
-  const form = document.getElementById('registroForm');
+  const form      = document.getElementById('registroForm');
   const submitBtn = document.getElementById('submitBtn');
-  const status = document.getElementById('formStatus');
+  const status    = document.getElementById('formStatus');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     status.style.display = 'none';
     status.className = 'form-status';
 
-    const nombre = document.getElementById('nombre').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const codigo = document.getElementById('codigo').value.trim();
+    const nombre   = document.getElementById('nombre').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const codigo   = document.getElementById('codigo').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
-    const pais = document.getElementById('pais').value;
-    const ciudad = document.getElementById('ciudad').value.trim();
+    const pais     = document.getElementById('pais').value;
+    const ciudad   = document.getElementById('ciudad').value.trim();
 
     if (!nombre || !email || !codigo || !whatsapp || !pais || !ciudad) {
       status.textContent = 'Por favor completa todos los campos del formulario.';
@@ -758,7 +801,6 @@
     }
 
     const data = { nombre, email, codigo, whatsapp, pais, ciudad };
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando…';
 
@@ -768,7 +810,6 @@
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(data)
       });
-
       const result = await response.json();
       if (result.ok) {
         status.innerHTML = '🎉 <strong>¡Listo!</strong> Te acabamos de enviar la confirmación a tu correo. Revisa también tu carpeta de spam.';
