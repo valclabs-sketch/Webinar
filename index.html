@@ -684,7 +684,7 @@
 </div>
 <script>
   // ====== CONFIG ======
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqZgeeTAaDTmM3ZaAXYHalKmfWm4LjdCpmx0MZoZuKlCJieChgQ9zFwGYVBLIK2XyGm/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqZgeeTADTmM3ZaAXYHalKmfWm4LjdCpmx0MZoZuKlCJieChgQ9zFwGYVBLIK2XyGm/exec";
   // Martes 2 de junio 2026, 8:00 PM Colombia (UTC-5) = 01:00 UTC del 3 de junio
   const webinarDate = new Date(Date.UTC(2026, 5, 3, 1, 0, 0));
   // ====== Countdown ======
@@ -755,21 +755,28 @@
     try {
       const response = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
+        redirect: 'follow',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(data)
       });
-      const result = await response.json();
+      const text = await response.text();
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (_) {
+        throw new Error('Respuesta inesperada del servidor. Detalle: ' + text.substring(0, 120));
+      }
       if (result.ok) {
         status.innerHTML = '🎉 <strong>¡Listo!</strong> Te acabamos de enviar la confirmación a tu correo. Revisa también tu carpeta de spam.';
         status.className = 'form-status success';
         status.style.display = 'block';
         form.reset();
       } else {
-        throw new Error(result.error || 'Error desconocido');
+        throw new Error(result.error || 'Error desconocido en el servidor');
       }
     } catch (err) {
       console.error(err);
-      status.textContent = 'Hubo un problema enviando tus datos. Revisa tu conexión o escríbeme directo.';
+      status.textContent = 'Error: ' + err.message;
       status.className = 'form-status error';
       status.style.display = 'block';
     } finally {
