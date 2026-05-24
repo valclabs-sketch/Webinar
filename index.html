@@ -39,7 +39,6 @@
   }
   .container{max-width:1180px; margin:0 auto; padding:0 24px;}
   .narrow{max-width:780px; margin:0 auto;}
-
   /* ---------- NAV ---------- */
   nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
@@ -61,11 +60,9 @@
     box-shadow:0 4px 14px rgba(91,63,203,0.3);
   }
   .nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(91,63,203,0.4);}
-
   /* ---------- PAGE MAIN WRAPPER (hero + form) ---------- */
   /* Desktop: normal block flow — hero first, then form */
   .page-main{ display:block; }
-
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
@@ -150,7 +147,6 @@
     border:1px solid #FFE08A;
     padding:6px 12px; border-radius:100px; font-size:12px; font-weight:700;
   }
-
   /* ---------- HERO ART ---------- */
   .hero-art{
     position:relative; min-height:480px;
@@ -212,7 +208,6 @@
   .cd-cell{background:var(--purple-100); padding:8px 4px; border-radius:8px;}
   .cd-num{font-family:'Fraunces',serif; font-weight:700; font-size:20px; color:var(--purple-700); line-height:1;}
   .cd-lbl{font-size:9px; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.05em; margin-top:4px;}
-
   /* ---------- SECTION BASE ---------- */
   section{padding:90px 0;}
   @media (max-width:700px){section{padding:60px 0;}}
@@ -228,7 +223,6 @@
   }
   h2 em{color:var(--purple-700); font-style:italic;}
   .section-lead{font-size:17px; color:var(--ink-soft); max-width:680px; margin-bottom:48px;}
-
   /* ---------- FORM SECTION ---------- */
   .form-section{
     background:linear-gradient(135deg, var(--purple-800), var(--purple-700));
@@ -259,10 +253,8 @@
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
     color:var(--gold); font-weight:700; margin-top:2px;
   }
-
   /* Mobile-only compact intro shown above the form on mobile */
   .mobile-form-intro{ display:none; }
-
   .form-card{
     background:var(--white);
     border-radius:24px;
@@ -304,7 +296,6 @@
     outline:none; border-color:var(--purple-700); background:var(--white);
     box-shadow:0 0 0 4px rgba(124,92,219,0.12);
   }
-  .field-row{display:grid; grid-template-columns:110px 1fr; gap:10px;}
   .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
   .submit-btn{
     width:100%; padding:17px;
@@ -322,7 +313,6 @@
   .form-status{margin-top:14px; padding:14px; border-radius:10px; font-size:14px; display:none;}
   .form-status.success{background:#D8F5E3; color:#136D40; display:block;}
   .form-status.error{background:#FFE0E5; color:#A4133C; display:block;}
-
   /* ---------- FAQ ---------- */
   .faq-section{background:var(--purple-50);}
   .faq-list{display:flex; flex-direction:column; gap:12px; max-width:780px; margin:0 auto;}
@@ -347,7 +337,6 @@
     color:var(--ink-soft); font-size:15px;
   }
   .faq-item.open .faq-a{max-height:300px; margin-top:14px;}
-
   /* ---------- FINAL CTA ---------- */
   .final-cta{
     background:linear-gradient(135deg, var(--ink), var(--purple-800));
@@ -369,14 +358,12 @@
     font-size:15px; font-weight:600; color:rgba(255,255,255,0.9);
   }
   .final-cta .ev-item .ev-icon{font-size:18px;}
-
   /* ---------- FOOTER ---------- */
   footer{
     background:var(--ink); color:rgba(255,255,255,0.6); padding:40px 0;
     text-align:center; font-size:13px;
   }
   footer .brand{justify-content:center; color:var(--white); margin-bottom:8px;}
-
   /* ---------- LIVE COUNTDOWN BAR ---------- */
   .live-countdown{
     position:fixed; bottom:0; left:0; right:0; z-index:90;
@@ -393,40 +380,29 @@
     font-weight:700; font-size:13px; text-decoration:none;
     white-space:nowrap;
   }
-
   /* ============================================================
      MOBILE STYLES — ≤ 900px
      Form section appears FIRST, hero content below
   ============================================================ */
   @media (max-width:900px){
-
-    /* Flip the visual order: form first, hero second */
     .page-main{
       display:flex;
       flex-direction:column;
     }
     .form-section{
       order:1;
-      padding-top:88px;  /* clearance for fixed nav */
+      padding-top:88px;
       padding-bottom:48px;
     }
     .hero{
       order:2;
-      padding:48px 0 60px; /* no need for nav clearance here anymore */
+      padding:48px 0 60px;
     }
-
-    /* Hero: single column */
     .hero-grid{grid-template-columns:1fr; gap:32px;}
-
-    /* Hide floating cards on mobile (hero art) */
     .hero-art{display:none;}
-
-    /* Form grid: single column, form card first */
     .form-grid{grid-template-columns:1fr; gap:32px;}
     .form-left{order:2;}
     .form-card{order:1;}
-
-    /* Show the mobile-only compact intro above the form */
     .mobile-form-intro{
       display:block;
       text-align:center;
@@ -447,18 +423,15 @@
     }
     .mobile-form-intro h2 em{ color:var(--gold); }
   }
-
   @media (max-width:600px){
     .lc-text{font-size:12px;}
     .lc-cta{padding:7px 14px; font-size:12px;}
     .form-card{padding:28px 20px;}
-    .field-row{grid-template-columns:90px 1fr;}
     .field-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
-
 <nav id="nav">
   <div class="container nav-inner">
     <div class="brand">
@@ -468,10 +441,8 @@
     <a href="#registro" class="nav-cta">¡Quiero mi cupo gratis!</a>
   </div>
 </nav>
-
 <!-- ===== PAGE MAIN: hero + form wrapped so we can swap order on mobile ===== -->
 <div class="page-main">
-
   <!-- ===================== HERO ===================== -->
   <header class="hero">
     <div class="container">
@@ -558,11 +529,9 @@
       </div>
     </div>
   </header>
-
   <!-- ===================== FORM / REGISTRO ===================== -->
   <section class="form-section" id="registro">
     <div class="container">
-
       <!-- Mobile-only compact title (hidden on desktop) -->
       <div class="mobile-form-intro">
         <div class="badge">
@@ -571,7 +540,6 @@
         </div>
         <h2>El <em>M.A.P.A.</em> para empezar en análisis de datos</h2>
       </div>
-
       <div class="form-grid">
         <!-- LEFT: copy & perks -->
         <div class="form-left">
@@ -588,7 +556,6 @@
             <div class="perk"><span class="check">✓</span><div><strong>🎁 Regalo sorpresa</strong> si te quedas hasta el final</div></div>
           </div>
         </div>
-
         <!-- RIGHT: form card -->
         <div class="form-card">
           <span class="form-tag">100% gratis</span>
@@ -609,10 +576,7 @@
             </div>
             <div class="field">
               <label for="whatsapp">Número de WhatsApp *</label>
-              <div class="field-row">
-                <input type="text" id="codigo" name="codigo" required placeholder="+57" autocomplete="tel-country-code" value="+57" />
-                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="3001234567" autocomplete="tel-national" />
-              </div>
+              <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Ej: +573001234567" autocomplete="tel" />
             </div>
             <div class="field-grid">
               <div class="field">
@@ -655,9 +619,7 @@
       </div>
     </div>
   </section>
-
 </div><!-- end .page-main -->
-
 <!-- ===================== FAQ ===================== -->
 <section class="faq-section">
   <div class="container">
@@ -689,7 +651,6 @@
     </div>
   </div>
 </section>
-
 <!-- ===================== FINAL CTA ===================== -->
 <section class="final-cta">
   <div class="container narrow">
@@ -708,7 +669,6 @@
     <p style="margin-top:16px; font-size:13px; color:rgba(255,255,255,0.55);">Inscripción en 1 minuto · cupos limitados</p>
   </div>
 </section>
-
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="container">
@@ -717,19 +677,16 @@
     <p style="margin-top:6px; opacity:0.6;">© ValClabs 2026 — Hecho con cariño para quienes empiezan desde cero.</p>
   </div>
 </footer>
-
 <!-- ===================== STICKY COUNTDOWN BAR ===================== -->
 <div class="live-countdown" id="liveCountdown">
   <div class="lc-text">⏰ Falta <strong id="lc-text">poco</strong> para el webinar · 2 de junio, 8 PM</div>
   <a href="#registro" class="lc-cta">Reservar cupo gratis →</a>
 </div>
-
 <script>
   // ====== CONFIG ======
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwlurs-BILkbdrXbMQwNicxZQUiQtIiUJJ9ZpCVvsp5PUp7cDRENmikMQN41FZ1izH9/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqZgeeTAaDTmM3ZaAXYHalKmfWm4LjdCpmx0MZoZuKlCJieChgQ9zFwGYVBLIK2XyGm/exec";
   // Martes 2 de junio 2026, 8:00 PM Colombia (UTC-5) = 01:00 UTC del 3 de junio
   const webinarDate = new Date(Date.UTC(2026, 5, 3, 1, 0, 0));
-
   // ====== Countdown ======
   function updateCountdown(){
     const now = new Date();
@@ -757,7 +714,6 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
-
   // ====== Nav scroll effect ======
   const nav = document.getElementById('nav');
   const liveCountdown = document.getElementById('liveCountdown');
@@ -770,40 +726,32 @@
       liveCountdown.classList.remove('visible');
     }
   });
-
   // ====== FAQ accordion ======
   document.querySelectorAll('.faq-item').forEach(item => {
     item.addEventListener('click', () => item.classList.toggle('open'));
   });
-
   // ====== Form submission ======
   const form      = document.getElementById('registroForm');
   const submitBtn = document.getElementById('submitBtn');
   const status    = document.getElementById('formStatus');
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     status.style.display = 'none';
     status.className = 'form-status';
-
     const nombre   = document.getElementById('nombre').value.trim();
     const email    = document.getElementById('email').value.trim();
-    const codigo   = document.getElementById('codigo').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
     const pais     = document.getElementById('pais').value;
     const ciudad   = document.getElementById('ciudad').value.trim();
-
-    if (!nombre || !email || !codigo || !whatsapp || !pais || !ciudad) {
+    if (!nombre || !email || !whatsapp || !pais || !ciudad) {
       status.textContent = 'Por favor completa todos los campos del formulario.';
       status.className = 'form-status error';
       status.style.display = 'block';
       return;
     }
-
-    const data = { nombre, email, codigo, whatsapp, pais, ciudad };
+    const data = { nombre, email, whatsapp, pais, ciudad };
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando…';
-
     try {
       const response = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
@@ -816,7 +764,6 @@
         status.className = 'form-status success';
         status.style.display = 'block';
         form.reset();
-        document.getElementById('codigo').value = '+57';
       } else {
         throw new Error(result.error || 'Error desconocido');
       }
